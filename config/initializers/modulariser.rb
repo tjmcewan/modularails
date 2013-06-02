@@ -5,8 +5,7 @@ ActiveSupport.on_load(:action_controller) do
 end
 
 # setup assets for each non-rails folder under app/
-default_folders = ["assets", "controllers", "helpers", "mailers", "models", "views"]
-namespaces = Dir['app/*/'].map{ |a| File.basename(a) } - default_folders
-namespaces.each do |namespace|
+modules = Dir['app/*/'].map{ |a| File.basename(a) }
+modules.each do |namespace|
   Modularails::Application.config.assets.paths << Rails.root.join("app/#{namespace}/assets")
 end
